@@ -157,12 +157,12 @@ list(APPEND EXTRA_LIBRARIES ${CMAKE_DL_LIBS})
 
 if (EXTERNAL_BOOST)
   set(NEEDED_Boost_VERSION 1.58.0)
-  find_package(Boost ${NEEDED_Boost_VERSION} REQUIRED COMPONENTS mpi serialization system filesystem)
+  find_package(Boost ${NEEDED_Boost_VERSION} REQUIRED COMPONENTS mpi python3 serialization system filesystem)
   set(Boost_LIBS ${Boost_LIBRARIES})
   if(${Boost_VERSION} VERSION_LESS 106700)
      find_package(Boost ${NEEDED_Boost_VERSION} REQUIRED COMPONENTS python)
   else()
-     find_package(Boost ${NEEDED_Boost_VERSION} REQUIRED COMPONENTS python27)
+     find_package(Boost ${NEEDED_Boost_VERSION} REQUIRED COMPONENTS python3)
   endif()
   
   # Append Python library to the list of Boost libraries.
