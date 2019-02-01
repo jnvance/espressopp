@@ -85,13 +85,13 @@ class __RealND(six.with_metaclass(esutil.ExtendBaseClass, RealND)) :
 
     # string conversion
     def __str__(self) :
-      arr = []
-      for i in range(self.dimension):
-        arr.append(self[i])
-      return str(arr)
+        arr = []
+        for i in range(self.dimension):
+            arr.append(self[i])
+        return str(arr)
 
     def __repr__(self) :
-      return 'RealND' + str(self)
+        return 'RealND' + str(self)
 
 def toRealNDFromVector(*args):
     """Try to convert the arguments to a RealND.
@@ -100,11 +100,11 @@ def toRealNDFromVector(*args):
     specified."""
     arg0 = args[0]
     if isinstance(arg0, RealND):
-      return arg0
+        return arg0
     elif hasattr(arg0, '__iter__'):
-      return RealND(*args)
+        return RealND(*args)
     else:
-      raise TypeError("Something wrong in toRealNDFromVector")
+        raise TypeError("Something wrong in toRealNDFromVector")
 
 def toRealND(*args):
     """Try to convert the arguments to a RealND, returns the argument,

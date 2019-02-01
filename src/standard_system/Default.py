@@ -55,12 +55,12 @@ def Default(box, rc=1.12246, skin=0.3, dt=0.005, temperature=None, halfCellInt =
 
   print("nodeGrid: ",nodeGrid, " cellGrid: ",cellGrid, "half cell: ", halfCellInt)
 
-  integrator     = espressopp.integrator.VelocityVerlet(system)  
-  integrator.dt  = dt
-  if (temperature != None):
-    thermostat             = espressopp.integrator.LangevinThermostat(system)
-    thermostat.gamma       = 1.0
-    thermostat.temperature = temperature
-    integrator.addExtension(thermostat)
-   
-  return system, integrator
+    integrator     = espressopp.integrator.VelocityVerlet(system)  
+    integrator.dt  = dt
+    if (temperature != None):
+        thermostat             = espressopp.integrator.LangevinThermostat(system)
+        thermostat.gamma       = 1.0
+        thermostat.temperature = temperature
+        integrator.addExtension(thermostat)
+
+    return system, integrator

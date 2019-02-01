@@ -81,18 +81,18 @@ class VerletListLocal(_espressopp.VerletList):
                     self.cxxclass.exclude(self, pid1, pid2)
                 # now rebuild list with exclusions
                 self.cxxclass.rebuild(self)
-                
-            
+
+
     def totalSize(self):
 
         if pmi.workerIsActive():
             return self.cxxclass.totalSize(self)
-        
+
     def localSize(self):
 
         if pmi.workerIsActive():
             return self.cxxclass.localSize(self)
-        
+
     def exclude(self, exclusionlist):
         """
         Each processor takes the broadcasted exclusion list
@@ -104,15 +104,15 @@ class VerletListLocal(_espressopp.VerletList):
                 self.cxxclass.exclude(self, pid1, pid2)
             # rebuild list with exclusions
             self.cxxclass.rebuild(self)
-            
+
     def getAllPairs(self):
 
         if pmi.workerIsActive():
             pairs=[]
             npairs=self.localSize()
             for i in range(npairs):
-              pair=self.cxxclass.getPair(self, i+1)
-              pairs.append(pair)
+                pair=self.cxxclass.getPair(self, i+1)
+                pairs.append(pair)
             return pairs 
 
 
