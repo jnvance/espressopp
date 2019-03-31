@@ -115,16 +115,14 @@ def toRealND(*args):
         return RealND(*args)
 
 class __RealNDs(RealNDs):
-    __metaclass__ = esutil.ExtendBaseClass
-    # string conversion
     def __str__(self) :
-	arr = []
-	for i in xrange(self.dimension):
+        arr = []
+        for i in range(self.dimension):
             arr_i = []
-	    for j in xrange(self[i].dimension):
-		arr_i.append(str(self[i][j]))
+            for j in range(self[i].dimension):
+                arr_i.append(str(self[i][j]))
             arr.append(arr_i)
-	return str(arr)
+        return str(arr)
 
     def __repr__(self) :
         return 'RealNDs' + str(self)
