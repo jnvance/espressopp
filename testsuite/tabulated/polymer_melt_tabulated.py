@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 #
 #  Copyright (C) 2013-2017(H)
 #      Max Planck Institute for Polymer Research
@@ -112,7 +112,7 @@ potLJ  = espressopp.interaction.LennardJones(epsilon=1.0, sigma=1.0, shift=False
 potFENE = espressopp.interaction.FENE(K=30.0, r0=0.0, rMax=1.5)
 potCosine = espressopp.interaction.Cosine(K=1.5, theta0=3.1415926)
 
-print('Generating potential files ... (%2s, %2s, %2s)\n' % (tabfileLJ, tabfileFENE, tabfileCosine))
+print(('Generating potential files ... (%2s, %2s, %2s)\n' % (tabfileLJ, tabfileFENE, tabfileCosine)))
 writeTabFile(potLJ, tabfileLJ, N=257, low=0.01, high=potLJ.cutoff)
 writeTabFile(potFENE, tabfileFENE, N=257, low=0.0001, high=1.49)
 writeTabFile(potCosine, tabfileCosine, N=257, low=0.0001, high=3.14, body=3)
@@ -125,7 +125,7 @@ potTabCosine = espressopp.interaction.TabulatedAngular(itype=spline, filename = 
 for tabulation in [True, False]:
     if tabulation: w = ''
     else: w = 'out'
-    print('Running simulation with%0s tabulated potentials' % w)
+    print(('Running simulation with%0s tabulated potentials' % w))
         
     print('Setting up ...')
     system = espressopp.System()
