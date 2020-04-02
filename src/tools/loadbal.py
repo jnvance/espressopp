@@ -215,73 +215,39 @@ def addHsymmetry(halfNeilListX, eh_size, rc_skin, node_gridX, cellsX, ratioMS, s
             halfNeilListX[len(halfNeilListX) - 2] = aux2 - \
                 halfNeilListX[len(halfNeilListX) - 1]
             if sum(halfNeilListX) != cellsX:
-<<<<<<< HEAD
                 wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
             else:
                 if any([v == 0 for v in halfNeilListX]):  # Recently added 138, 139 and 140
                     wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
-=======
-                wholeNeilListX = reDistCells(
-                    halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
-            else:
-                if any([v == 0 for v in halfNeilListX]):  # Recently added 138, 139 and 140
-                    wholeNeilListX = reDistCells(
-                        halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
->>>>>>> converted with 2to3
                 else:
                     print(
                         "HeSpaDDA message: addHsymmetry all tests passed although not all cells were used")
                     wholeNeilListX = halfNeilListX[:]
         else:
-<<<<<<< HEAD
-            print "HeSpaDDA message: The distributed cores are not matching the available ones (++ reDistCells())"
+            print("HeSpaDDA message: The distributed cores are not matching the available ones (++ reDistCells())")
             # in the original implementation of halfCell the halfCellInt was ommited in the following call
             # I think, however, that it was just forgotten, so I put it here like to all other calls to reDistCells
             wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt) 
             # To be determined if additional reDitsCells should be called!
     elif len(halfNeilListX) == node_gridX and aux2 == 0:
         if sum(halfNeilListX) != cellsX:
-            print "HeSpaDDA message: The distributed cells are not matching the available ones"
+            print("HeSpaDDA message: The distributed cells are not matching the available ones")
             wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
         else:
             # Recently added 152, 153 and 154
             if any([v == 0 for v in halfNeilListX]):
                 wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
-=======
-            print(
-                "HeSpaDDA message: The distributed cores are not matching the available ones (++ reDistCells())")
-            wholeNeilListX = reDistCells(
-                halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
-            # To be determined if additional reDitsCells should be called!
-    elif len(halfNeilListX) == node_gridX and aux2 == 0:
-        if sum(halfNeilListX) != cellsX:
-            print(
-                "HeSpaDDA message: The distributed cells are not matching the available ones")
-            wholeNeilListX = reDistCells(
-                halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
-        else:
-            # Recently added 152, 153 and 154
-            if any([v == 0 for v in halfNeilListX]):
-                wholeNeilListX = reDistCells(
-                    halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
->>>>>>> converted with 2to3
             else:
                 print(
                     "HeSpaDDA message: addHsymmetry all tests passed although not all cells are used")
                 wholeNeilListX = halfNeilListX[:]
     else:
-        print(("HeSpaDDA message: The distributed cores are not matching the available ones", halfNeilListX))
+        print("HeSpaDDA message: The distributed cores are not matching the available ones", halfNeilListX)
         halfNeilListX[len(halfNeilListX) - 2] = halfNeilListX[len(
             halfNeilListX) - 1] + halfNeilListX[len(halfNeilListX) - 2]
         halfNeilListX.pop(len(halfNeilListX) - 1)
-<<<<<<< HEAD
-        print "HeSpaDDA message: During DD a core has been reduced"
-        wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
-=======
         print("HeSpaDDA message: During DD a core has been reduced")
-        wholeNeilListX = reDistCells(
-            halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas)
->>>>>>> converted with 2to3
+        wholeNeilListX = reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, sizeX, idealGas, halfCellInt)
     return wholeNeilListX
 
 # This function adapts the number of cells that go into each core into the data structure of left and right cell lists for example for 4 core and 8 cells [3,4,5,8] to [0,3,4,5,8]
@@ -313,8 +279,8 @@ def reDistCellsHom(node_gridX, sizeX, rc_skin, halfCellInt = 1):
             wholeNeiListX = redistDeltaRandomly(
                 wholeNeiListX, cellsX - sum(wholeNeiListX), 0)
         else:
-            print(("HeSpaDDA message: PASS appears...here, take a look at this value Px/Cx",
-                   round((cellsX) / node_gridX - 0.5)))
+            print("HeSpaDDA message: PASS appears...here, take a look at this value Px/Cx",
+                   round((cellsX) / node_gridX - 0.5))
             pass
     else:
         if node_gridX % 2 == 0 and cellsX % 2 != 0:
@@ -341,7 +307,7 @@ def reDistCells(halfNeilListX, cellsX, eh_size, rc_skin, node_gridX, ratioMS, si
     totCellsCG = cellsX - totCellsEH
     totNodesCG, totNodesEH = findNodesMS(
         node_gridX, totCellsEH, totCellsCG, ratioMS, sizeX, eh_size, idealGas)
-    print(("HeSpaDDA message: Cores in Both LR and HR, are:", totNodesCG, totNodesEH))
+    print("HeSpaDDA message: Cores in Both LR and HR, are:", totNodesCG, totNodesEH)
     if idealGas:	  # This represents the Ideal Gas (IG)!!! (OJO)
         wholeNeiListX_EH = []
         wholeNeiListX_CG = []

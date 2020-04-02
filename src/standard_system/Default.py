@@ -45,15 +45,15 @@ import mpi4py.MPI as MPI
 
 def Default(box, rc=1.12246, skin=0.3, dt=0.005, temperature=None, halfCellInt = 1):
 
-  system         = espressopp.System()
-  system.rng     = espressopp.esutil.RNG()
-  system.bc      = espressopp.bc.OrthorhombicBC(system.rng, box)
-  system.skin    = skin
-  nodeGrid       = espressopp.tools.decomp.nodeGrid(MPI.COMM_WORLD.size,box,rc,skin)
-  cellGrid       = espressopp.tools.decomp.cellGrid(box, nodeGrid, rc, skin, halfCellInt)
-  system.storage = espressopp.storage.DomainDecomposition(system, nodeGrid, cellGrid, halfCellInt)
+    system         = espressopp.System()
+    system.rng     = espressopp.esutil.RNG()
+    system.bc      = espressopp.bc.OrthorhombicBC(system.rng, box)
+    system.skin    = skin
+    nodeGrid       = espressopp.tools.decomp.nodeGrid(MPI.COMM_WORLD.size,box,rc,skin)
+    cellGrid       = espressopp.tools.decomp.cellGrid(box, nodeGrid, rc, skin, halfCellInt)
+    system.storage = espressopp.storage.DomainDecomposition(system, nodeGrid, cellGrid, halfCellInt)
 
-  print("nodeGrid: ",nodeGrid, " cellGrid: ",cellGrid, "half cell: ", halfCellInt)
+    print("nodeGrid: ",nodeGrid, " cellGrid: ",cellGrid, "half cell: ", halfCellInt)
 
     integrator     = espressopp.integrator.VelocityVerlet(system)  
     integrator.dt  = dt
