@@ -46,6 +46,6 @@ if pmi.isController :
     class VelocityVerlet(MDIntegrator, metaclass=pmi.Proxy):
         pmiproxydefs = dict(
             cls =  'espressopp.integrator.VelocityVerletLocal',
-          pmicall = ['resetTimers'],
-          pmiinvoke = ['getTimers']
+            pmicall = ['resetTimers','getNumResorts'],
+            pmiinvoke = ['getTimers']
         )
