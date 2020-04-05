@@ -306,6 +306,9 @@ static void pyInitialize() {
 
      pyLogging = import("logging");
 
+     // increment to avoid segfault
+     Py_INCREF(pyLogging.ptr());
+
 #ifdef DEBUGGING
      printf("PyLogger:: import logging done\n");  
 #endif 
