@@ -40,7 +40,7 @@ from espressopp.tools import timers
 
 # simulation parameters (nvt = False is nve)
 steps = 100000
-check = steps/1
+check = steps//1
 timestep = 0.0005
 
 # parameters to convert GROMACS tabulated potential file
@@ -114,7 +114,7 @@ for pid in range(num_particles):
             types[pid], masses[pid], charges[pid], 1]
     allParticlesAT.append(part)
 
-num_particlesCG = len(x)/3
+num_particlesCG = len(x)//3
 typeCG=0
 # create CG particles
 for pidCG in range(num_particlesCG):
@@ -250,7 +250,7 @@ for i in range(check):
     outfile.write(fmt%(i*steps/check*timestep, T, Eb, EAng, ELj, EQQ, Ek, Etotal))
     print((fmt%(i*steps/check*timestep, T, Eb, EAng, ELj, EQQ, Ek, Etotal)))
 
-    integrator.run(steps/check) # print out every steps/check steps
+    integrator.run(steps//check) # print out every steps/check steps
 
 
 # simulation information
